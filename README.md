@@ -176,5 +176,3 @@ if __name__ == "__main__":
 1. Qiita API トークンを取得し、GitHub Secrets に `QIITA_TOKEN` を追加
 2. `articles/` に記事を `.md` 形式で作成
 3. `git push` するだけで Qiita に自動投稿 & 更新
-
-これで、GitHub で記事を管理しつつ、Qiita へ簡単に連携できる環境が完成しました。
