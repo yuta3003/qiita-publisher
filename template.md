@@ -1,7 +1,7 @@
 ---
 title: "ここに記事のタイトルを入力"
 tags: ["GitHubActions", "Qiita", "Markdown"]
-private: false
+private: true
 ---
 
 # ここに記事のタイトルを入力
