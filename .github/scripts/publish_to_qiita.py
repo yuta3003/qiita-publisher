@@ -66,24 +66,15 @@ def post_to_qiita(file_name, meta, body, qiita_ids):
         print("エラー:", response.text)
 
 def main():
-    print("1")
     qiita_ids = load_qiita_ids()
-    print("2")
     md_files = glob.glob(f"{ARTICLE_DIR}/*.md")
-    print("3")
 
     for md_file in md_files:
-        print("4")
         file_name = os.path.basename(md_file)
-        print("5")
         meta, body = parse_markdown(md_file)
-        print("6")
         post_to_qiita(file_name, meta, body, qiita_ids)
-        print("7")
 
-    print("8")
     save_qiita_ids(qiita_ids)
-    print("9")
 
 if __name__ == "__main__":
     main()
