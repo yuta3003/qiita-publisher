@@ -50,7 +50,7 @@ def post_to_qiita(file_name, meta, body, qiita_ids):
 
     if file_name in qiita_ids:
         qiita_article_id = qiita_ids[file_name]
-        response = requests.put(f"{QIITA_API_URL}/{qiita_article_id}", headers=headers, json=data)
+        response = requests.patch(f"{QIITA_API_URL}/{qiita_article_id}", headers=headers, json=data)
         action = "更新"
     else:
         response = requests.post(QIITA_API_URL, headers=headers, json=data)
