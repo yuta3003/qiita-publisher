@@ -1,0 +1,27 @@
+name: Publish to Qiita
+
+on:
+  push:
+    branches:
+      - main  # mainブランチにpushされたら実行
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Pythonをセットアップ
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: 依存関係をインストール
+        run: pip install requests pyyaml
+
+      - name: Qiita に投稿・更新
+        env:
+          QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
+        run: python .github/scripts/publish_to_qiita.py

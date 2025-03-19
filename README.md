@@ -94,22 +94,11 @@ jobs:
 - `articles/` フォルダに `.md` ファイルを作成
 - `git push` すれば **Qiita に投稿・更新** されます
 
----
-
 ## 📌 注意点
 - Qiita の **記事 ID を `.github/qiita_posted.json` に保存** し、次回以降の更新時に使用します。
 - `tags` は **最大5つ** まで指定できます。
 - **`private: true` にすると下書き投稿** になります。
 
----
-
-## 📜 ライセンス
-MIT License
-
----
-
 ## 🎉 クレジット
 - [Qiita API ドキュメント](https://qiita.com/api/v2/docs)
 - [GitHub Actions](https://docs.github.com/ja/actions)
-
-このリポジトリを活用して、Qiita の記事を簡単に管理しましょう！🚀
