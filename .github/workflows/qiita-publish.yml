@@ -9,14 +9,19 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write  # ファイルの書き込み権限を付与
+
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true  # 認証情報を維持する
 
       - name: Pythonをセットアップ
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.13'  # バージョンを固定
 
       - name: 依存関係をインストール
         run: pip install requests pyyaml
@@ -24,4 +29,12 @@ jobs:
       - name: Qiita に投稿・更新
         env:
           QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
-        run: python .github/scripts/publish_to_qiita.py
+        run: python publish_to_qiita.py
+
+      - name: 更新されたファイルをコミット・プッシュ
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/qiita_posted.json
+          git commit -m "Update Qiita posted IDs" || echo "No changes to commit"
+          git push

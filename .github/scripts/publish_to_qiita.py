@@ -21,7 +21,7 @@ def load_qiita_ids():
 
 def save_qiita_ids(qiita_ids):
     """ 記事IDをJSONファイルに保存する """
-    print(f"QIITA_ID_FILE: {QIITA_ID_FILE}")
+    os.makedirs(os.path.dirname(QIITA_ID_FILE), exist_ok=True)
     with open(QIITA_ID_FILE, "w", encoding="utf-8") as f:
         json.dump(qiita_ids, f, indent=2, ensure_ascii=False)
 
