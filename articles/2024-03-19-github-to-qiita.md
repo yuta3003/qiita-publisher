@@ -1,35 +1,35 @@
 ---
 title: "GitHubにpushしてQiitaに投稿"
 tags: ["GitHubActions", "Qiita", "Automation"]
-private: true
+private: false
 ---
 
 # GitHubにpushしてQiitaに投稿
 
 GitHubのリポジトリに記事を書いてpushすると、自動でQiitaに投稿・更新される仕組みをGitHub Actionsを使って構築しました。
 
-これにより、**GitHub で記事を管理しつつ、Qiita に自動投稿できる** ようになります！ 🚀
+これにより、GitHub で記事を管理しつつ、Qiita に自動投稿できるようになります。
 
-## 🎯 できること
-- `articles/` フォルダ内の Markdown (`.md`) を **自動投稿・更新**
-- Qiita の記事 ID を **GitHub で管理**
-- `git push` するだけで **Qiita に反映**
+## できること
+- `articles/` フォルダ内の Markdown (`.md`) を自動投稿・更新
+- Qiita の記事 ID を GitHub で管理
+- `git push` するだけで Qiita に反映
 
-## 🛠 環境構築
+## 環境構築
 
-### 1️⃣ **Qiita API トークンを取得**
+### Qiita API トークンを取得
 [Qiitaの個人設定](https://qiita.com/settings/applications) で API トークンを発行します。
 
 必要な権限:
 - `read_qiita`（記事の読み取り）
 - `write_qiita`（記事の作成・更新）
 
-発行したトークンは、GitHub の **Secrets** に登録します。
+発行したトークンは、GitHub の Secrets に登録します。
 
-### 2️⃣ **GitHub Secrets に Qiita トークンを追加**
+### GitHub Secrets に Qiita トークンを追加
 GitHub リポジトリの `Settings > Secrets and variables > Actions` で `QIITA_TOKEN` を追加。
 
-## ⚙️ フォルダ構成
+## フォルダ構成
 
 ```
 ├── articles/                 # Qiita に投稿する記事フォルダ
@@ -44,7 +44,7 @@ GitHub リポジトリの `Settings > Secrets and variables > Actions` で `QIIT
 ├── README.md                  # リポジトリの説明
 ```
 
-## 🚀 GitHub Actions 設定
+## GitHub Actions 設定
 
 `.github/workflows/qiita-publish.yml` に以下を追加。
 
@@ -54,7 +54,7 @@ name: Publish to Qiita
 on:
   push:
     branches:
-      - main  # mainブランチにpushされたときに実行
+      - main
 
 jobs:
   publish:
@@ -78,7 +78,7 @@ jobs:
         run: python .github/scripts/publish_to_qiita.py
 ```
 
-## 📝 Qiita 投稿スクリプト
+## Qiita 投稿スクリプト
 
 `.github/scripts/publish_to_qiita.py` に Qiita 投稿用のスクリプトを作成。
 
@@ -140,9 +140,9 @@ with open(QIITA_ID_FILE, "w", encoding="utf-8") as f:
     json.dump(qiita_ids, f, indent=2, ensure_ascii=False)
 ```
 
-## ✅ まとめ
+## まとめ
 1. Qiita API トークンを取得し、GitHub Secrets に `QIITA_TOKEN` を追加
 2. `articles/` に記事を `.md` 形式で作成
-3. `git push` するだけで Qiita に **自動投稿 & 更新！**
+3. `git push` するだけで Qiita に自動投稿 & 更新
 
-これで、**GitHub で記事を管理しつつ、Qiita へ簡単に連携できる環境が完成！** 🚀
+これで、GitHub で記事を管理しつつ、Qiita へ簡単に連携できる環境が完成しました。
