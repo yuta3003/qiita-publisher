@@ -3,25 +3,25 @@ name: Publish to Qiita
 on:
   push:
     branches:
-      - main  # mainブランチにpushされたら実行
+      - main
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # ファイルの書き込み権限を付与
+      contents: write
 
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v4
         with:
-          persist-credentials: true  # 認証情報を維持する
+          persist-credentials: true
 
       - name: Pythonをセットアップ
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'  # バージョンを固定
+          python-version: '3.13.2'
 
       - name: 依存関係をインストール
         run: pip install requests pyyaml
