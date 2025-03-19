@@ -1,7 +1,7 @@
 ---
 title: "GitHubにpushしてQiitaに投稿"
 tags: ["GitHubActions", "Qiita", "Automation"]
-private: false
+private: true
 ---
 
 # GitHubにpushしてQiitaに投稿
